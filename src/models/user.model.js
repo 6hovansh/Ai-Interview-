@@ -15,10 +15,10 @@ const userSchema = new mongoose.Schema({
     },
     password:{
         type:String,
-        required,
+        required:true,
     }
 });
 
-const userModel = mpngoose.model("users",userSchema)
+const userModel = mongoose.model("users",userSchema)
 
 module.exports = userModel;
