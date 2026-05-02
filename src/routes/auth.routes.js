@@ -3,6 +3,12 @@ const authController = require("../controllers/auth.controller")
 
 const authRouter = Router();
 
-authRouter.post("register",authController.registerUserController)
+/** js doc comments
+ * @route POST /api/auth/register
+ * @description Register a new user 
+ * @access Public
+ */
+
+authRouter.post("/register",authController.registerUserController)
 
 module.exports = authRouter;
