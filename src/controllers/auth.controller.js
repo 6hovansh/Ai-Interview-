@@ -8,6 +8,7 @@ const jwt = require("jsonwebtoken");
  * @access Public 
  */
 
+let user = null;
 
 async function registerUserController(req, res) {
     const { username, email, password } = req.body
@@ -37,20 +38,27 @@ async function registerUserController(req, res) {
         password: hashedPassword
     })
 
-    const token = jwt.sign({ id: user._id,username:user.name },
-         process.env.jwtSecret,
-          {expiresIn:"1d"}
-        )
-        res.cookie("token", token)
+    /**
+     * The jwt.sign() method is used to generate a secure
+     * JSON Web Token (JWT). This token contains a payload 
+     * (data) that is cryptographically signed using a secret 
+     * key or a private key
+     */
+    const token = jwt.sign(                          //const token = jwt.sign(payload, secretOrPrivateKey, [options, callback]);
+        { id: user._id, username: user.name },
+        process.env.jwtSecret,
+        { expiresIn: "1d" }
+    )
+    res.cookie("token", token)
 
-        res.status(201).json({
-            message: "User Registered Successfully",
-            user: {
-                id: user._id,
-                username: user.username,
-                email: user.email
-            }
-        })
+    res.status(201).json({
+        message: "User Registered Successfully",
+        user: {
+            id: user._id,
+            username: user.username,
+            email: user.email
+        }
+    })
 }
 
 /**
@@ -60,7 +68,40 @@ async function registerUserController(req, res) {
  */
 async function loginUserController(req, res) {
     const { email, password } = req.body
+
+    const user = await userModel.findOne({ email });
+
+    if (!user) {
+        return res.status(400).json({
+            message: "Invalid Username or Password"
+        })
+    }
+
+    const isPasswordMatched = await bcrypt.compare(password, user.password)
+
+    if (!isPasswordMatched) {
+        return res.status(400).json({
+            message: "Invalid Username or Password"
+        })
+    }
+
+    const token = jwt.sign(
+        { id: user._id, username: user.name },
+        process.env.jwtSecret,
+        { expiresIn: "1d" }
+    )
+    res.cookie("token", token)
+
+    res.status(200).json({
+        message: "User logged in Successfully",
+        user: {
+            id: user._id,
+            username: user.username,
+            email: user.email
+        }
+    })
+
 }
 
 
-module.exports = { registerUserController };
+module.exports = { registerUserController, loginUserController };

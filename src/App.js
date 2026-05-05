@@ -8,7 +8,7 @@ app.use (express.json())
 const authRouter = require("./routes/auth.routes")
 
 /* Using all the routes here */
-app.use("api/auth",authRouter)
+app.use("/api/auth",authRouter)
 
 
 /**
@@ -17,6 +17,8 @@ app.use("api/auth",authRouter)
  * @access Public
  */
 
-authRouter.post("/register",)
+authRouter.post("/register", (req, res) => {
+    res.send("Register route working");
+})
   
 module.exports = app
