@@ -18,17 +18,17 @@ async function registerUserController(req, res) {
         return res.status(400).json({
             message: "Please provide username,email,password"
         })
-
-        const isUserAlreadyExixts = await userModel.findOne({
-            $or: [{ username }, { email }]
-        })
-
-        if (isUserAlreadyExixts) {
-            return res.status(400).json({
-                message: "Account already exists with this username or email"
-            })
-        }
     }
+    const isUserAlreadyExixts = await userModel.findOne({
+        $or: [{ username }, { email }]
+    })
+
+    if (isUserAlreadyExixts) {
+        return res.status(400).json({
+            message: "Account already exists with this username or email"
+        })
+    }
+
 
     const hashedPassword = await bcrypt.hash(password, 10)
 
