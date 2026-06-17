@@ -7,7 +7,7 @@ const generateInterviewReport = require("./src/services/ai.service");
 
 connectDB();
 
-generateInterviewReport({ resume, selfDescription, jobDescription })
+generateInterviewReport({ resume, selfDescription, jobDescription });
 
 
 app.listen(3000,()=>{
