@@ -11,22 +11,22 @@ const interviewReportSchema = z.object({
 
     technicalQuestions: z.array(z.object({
         question: z.string().describe("The technical question can be asked in the interview"),
-        intension: z.string().describe("The intension of the interviewer behind asking this question "),
+        intention: z.string().describe("The intention of the interviewer behind asking this question "),
         answer: z.string().describe("How to answer this question, what points to cover,what approch to take etc.")
     }).describe("Technical questions that can be asked in the interview along with their intension and how to answer them")),
 
     behavioralQuestions: z.array(z.object({
         question: z.string().describe("The technical question can be asked in the interview"),
-        intension: z.string().describe("The intension of the interviewer behind asking this question "),
+        intention: z.string().describe("The intention of the interviewer behind asking this question "),
         answer: z.string().describe("How to answer this question, what points to cover,what approch to take etc.")
     }).describe("Behavioral questions that can be asked in the interview along with their intension and how to answer them")),
 
-    skillGap: z.array(z.object({
+    skillGaps: z.array(z.object({
         skill: z.string().describe("The skill that the candidate is lacking in"),
         severity: z.enum(["low", "medium", "high"]).describe("The severity of the skill gap, how much the candidate is lacking in this skill")
     }).describe("The list of skill gaps in the candidate's profilealong with their severity")),
 
-    preparationPlan: z.array(z.object({
+    preparationPlans: z.array(z.object({
         day: z.number().describe("The day number of the preparation plan"),
         focus: z.string().describe("The focus of the day, what to focus on"),
         tasks: z.array(z.string()).describe("The list of tasks to be done on that day")
@@ -57,8 +57,10 @@ async function generateInterviewReport({ resume, selfDescription, jobDescription
         }
     })
 
-    
-     return JSON.parse(response.text);
+    console.log("RAW GEMINI:");
+    console.log(response.text);
+
+    return JSON.parse(response.text);
 
 }
 
