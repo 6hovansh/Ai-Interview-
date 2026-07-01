@@ -10,6 +10,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        gap: 1rem;
     }
 
     textarea {
@@ -38,5 +39,13 @@
         color: black;
         border-radius: 0.5rem;
         cursor: pointer;
+    }
+
+    .right {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 1rem;
+        width: 50%;
     }
 }
