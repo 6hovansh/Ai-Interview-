@@ -6,11 +6,14 @@
     justify-content: center;
     align-items: center;
 
+
     .interview-input-group {
         display: flex;
         justify-content: center;
         align-items: center;
         gap: 1rem;
+        min-width: 600px;
+        min-height:500px;
     }
 
     textarea {
@@ -45,6 +48,7 @@
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
+        align-self: stretch;
         gap: 1rem;
         width: 50%;
     }
