@@ -6,12 +6,13 @@ const Home = () => {
         <main className='home'>
             <div className='interview-input-group'>
                 <div className='left'>
+                    <label htmlFor="jobDescription">Job Description</label>
                     <textarea name="jobDescription" id="jobDescription" placeholder="Enter your text here..."></textarea>
                 </div>
 
                 <div className='right'>
                     <div className='input-group'>
-                        <p><small className='highlight'>(use resume + self description for better results)</small></p>
+                        <p><small className='highlight'>(Use Resume & Self Description for better results)</small></p>
                         <label className='file-lable' htmlFor="resume">Upload Resume</label>
                         <input hidden type="file" name='resume' id='resume' accept='.pdf' />
                     </div>

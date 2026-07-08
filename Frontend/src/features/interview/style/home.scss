@@ -13,7 +13,7 @@
         align-items: center;
         gap: 1rem;
         min-width: 600px;
-        min-height:500px;
+        min-height: 500px;
     }
 
     textarea {
@@ -27,10 +27,15 @@
         background-color: #1a1f27;
         color: whitesmoke;
         font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        resize: none;
     }
 
     .left {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
         align-self: stretch;
+        width: 50%;
     }
 
     .file-lable {
@@ -52,4 +57,9 @@
         gap: 1rem;
         width: 50%;
     }
+
+    .input-group:has(textarea) {
+        height: 100%;
+    }
+
 }
