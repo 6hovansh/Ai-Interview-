@@ -13,24 +13,25 @@ const interviewReportSchema = z.object({
         question: z.string().describe("The technical question can be asked in the interview"),
         intention: z.string().describe("The intention of the interviewer behind asking this question "),
         answer: z.string().describe("How to answer this question, what points to cover,what approch to take etc.")
-    }).describe("Technical questions that can be asked in the interview along with their intension and how to answer them")),
+    })).describe("Technical questions that can be asked in the interview along with their intension and how to answer them"),
 
     behavioralQuestions: z.array(z.object({
         question: z.string().describe("The technical question can be asked in the interview"),
         intention: z.string().describe("The intention of the interviewer behind asking this question "),
         answer: z.string().describe("How to answer this question, what points to cover,what approch to take etc.")
-    }).describe("Behavioral questions that can be asked in the interview along with their intension and how to answer them")),
+    })).describe("Behavioral questions that can be asked in the interview along with their intension and how to answer them"),
 
     skillGaps: z.array(z.object({
         skill: z.string().describe("The skill that the candidate is lacking in"),
         severity: z.enum(["low", "medium", "high"]).describe("The severity of the skill gap, how much the candidate is lacking in this skill")
-    }).describe("The list of skill gaps in the candidate's profilealong with their severity")),
+    })).describe("The list of skill gaps in the candidate's profilealong with their severity"),
 
-    preparationPlans: z.array(z.object({
+    preparationPlan: z.array(z.object({
         day: z.number().describe("The day number of the preparation plan"),
         focus: z.string().describe("The focus of the day, what to focus on"),
         tasks: z.array(z.string()).describe("The list of tasks to be done on that day")
-    }).describe("The preparation plan for the candidate, what to do on each day to prepare for the interview"))
+    })).describe("The preparation plan for the candidate, what to do on each day to prepare for the interview"),
+     title: z.string().describe("The title of the job for which the interview report is generated")
 })
 
 
