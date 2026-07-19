@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { string } = require('zod');
 
 
 /**
@@ -42,9 +43,9 @@ const technicalQuestionSchema = new mongoose.Schema(
             type: String,
             required: [true, "Technical question is required"],
         },
-        intension: {
+        intention: {
             type: String,
-            required: [true, "Intension is required"],
+            required: [true, "Intention is required"],
         },
         answer: {
             type: String,
@@ -129,10 +130,14 @@ const interviewReportSchema = new mongoose.Schema({
     technicalQuestions: [technicalQuestionSchema],
     behavioralQuestions: [behavioralQuestionSchema],
     skillGaps: [skillGapSchema],
-    preparationPlans: [preparationPlanSchema],
-    user:{
+    preparationPlan: [preparationPlanSchema],
+    user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref:"users"
+        ref: "users"
+    },
+    title: {
+        type: String,
+        required: [true, "Job title is required"]
     }
 }, {
     timestamps: true

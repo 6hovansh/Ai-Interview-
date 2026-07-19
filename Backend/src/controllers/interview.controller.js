@@ -1,5 +1,5 @@
 const pdfParse = require("pdf-parse")
-const { generateInterviewReport, generateResumePdf } = require("../services/ai.service")
+const {generateInterviewReport} = require("../services/ai.service")
 const interviewReportModel = require("../models/interviewReport.model")
 
 
@@ -14,10 +14,15 @@ async function generateInterViewReportController(req, res) {
     const { selfDescription, jobDescription } = req.body
 
     const interViewReportByAi = await generateInterviewReport({
+
         resume: resumeContent.text,
         selfDescription,
         jobDescription
     })
+
+    if (!interViewReportByAi?.title) {
+        return res.status(502).json({ message: "AI failed to generate a complete report. Please try again." })
+    }
 
     const interviewReport = await interviewReportModel.create({
         user: req.user.id,
