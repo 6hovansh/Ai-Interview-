@@ -31,7 +31,7 @@ const interviewReportSchema = z.object({
     })).describe("A day-wise preparation plan for the candidate to follow in order to prepare for the interview effectively"),
 })
 
-// Hand-written Gemini-native schema (guaranteed compatible with responseSchema)
+// Hand-written Gemini-native schema 
 const interviewReportResponseSchema = {
     type: Type.OBJECT,
     properties: {
