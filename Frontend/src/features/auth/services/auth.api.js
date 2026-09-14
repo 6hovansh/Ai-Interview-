@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: 'http://localhost:3000',
+    baseURL: import.meta.env.VITE_API_URL,
     withCredentials: true
     //by default, axios does not allow server to read cookies. To include cookies, you need to set the withCredentials option to true.
 
