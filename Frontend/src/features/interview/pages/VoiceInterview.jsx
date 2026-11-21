@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { Link, useParams } from "react-router"
 import { useVoiceInterview } from "../hooks/useVoiceInterview"
-import "../style/VoiceInterview.scss"
+import "../style/Voiceinterview.scss"
 
 const LEVELS = [
     { value: "intern", label: "Intern" },
@@ -41,8 +41,8 @@ export default function VoiceInterview() {
     // one value drives the button color, ring animation and status text
     const orbState =
         connecting ? "connecting" :
-        live ? (speaking ? "speaking" : muted ? "muted" : "listening") :
-        "idle"
+            live ? (speaking ? "speaking" : muted ? "muted" : "listening") :
+                "idle"
 
     const statusText = {
         idle: status === "ended" ? "Interview ended" : "Ready when you are",
