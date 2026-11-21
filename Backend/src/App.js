@@ -11,6 +11,15 @@ app.use(cors({
     credentials: true
 }))
 
+/* Health routes */
+app.get("/", (req, res) => {
+    res.send("InterviewAi API is running")
+})
+
+app.get("/health", (req, res) => {
+    res.status(200).json({ status: "ok" })
+})
+
 /* Require all the routes here */
 const authRouter = require("./routes/auth.routes")
 const interviewRouter = require("./routes/interview.routes")
@@ -26,8 +35,5 @@ app.use("/api/interview", interviewRouter)
  * @access Public
  */
 
-authRouter.post("/register", (req, res) => {
-    res.send("Register route working");
-})
 
 module.exports = app
