@@ -57,3 +57,12 @@ export const generateResumePdf = async ({ interviewReportId }) => {
 
     return response.data
 }
+
+/**
+ * @description Service to start a voice interview from an existing interview report.
+ */
+export const startVoiceInterview = async ({ interviewReportId, level }) => {
+    const response = await api.post("/api/interview/voice/start", { interviewReportId, level })
+
+    return response.data
+}

@@ -14,13 +14,19 @@ $severity-high: #ff4d4d;
 $severity-medium: #f5a623;
 $severity-low: #3fb950;
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 *::-webkit-scrollbar {
     display: none;
 }
 
 // ── Page Shell ────────────────────────────────────────────────────────────────
 .interview-page {
-    width: 100%;
+    width: 100%; // was 70% — caused the page shell to be narrower than the layout
     min-height: 100vh;
     background-color: $bg-page;
     color: $text-primary;
@@ -41,6 +47,7 @@ $severity-low: #3fb950;
     border: 1px solid $border-color;
     border-radius: 1rem;
     justify-content: space-between;
+    overflow: hidden; // keeps all children inside the rounded card
 }
 
 .interview-divider {
@@ -58,9 +65,6 @@ $severity-low: #3fb950;
     flex-direction: column;
     justify-content: space-between;
     gap: 0.25rem;
-
-
-
 
     &__label {
         font-size: 0.7rem;
@@ -113,19 +117,14 @@ $severity-low: #3fb950;
 // ── Center Content ────────────────────────────────────────────────────────────
 .interview-content {
     flex: 1;
+    min-width: 0; // lets the column shrink instead of overflowing the card
     padding: 1.75rem 2rem;
+    overflow-x: hidden;
     overflow-y: auto;
     min-height: initial;
     max-height: calc(100vh - 3rem);
     padding-bottom: 5rem;
     align-items: flex-start;
-
-
-
-
-
-
-
 
     section {
         min-height: 100%;
@@ -162,9 +161,13 @@ $severity-low: #3fb950;
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+    width: 100%;
+    min-width: 0;
 }
 
 .q-card {
+    width: 100%;
+    min-width: 0;
     background-color: $bg-panel;
     border: 1px solid $border-color;
     border-radius: 0.6rem;
@@ -198,6 +201,8 @@ $severity-low: #3fb950;
 
     &__question {
         flex: 1;
+        min-width: 0;
+        overflow-wrap: anywhere; // long questions wrap instead of stretching the card
         margin: 0;
         font-size: 0.9rem;
         font-weight: 500;
@@ -224,18 +229,21 @@ $severity-low: #3fb950;
         gap: 0.75rem;
         border-top: 1px solid $border-color;
         padding-top: 0.75rem;
+        min-width: 0;
     }
 
     &__section {
         display: flex;
         flex-direction: column;
         gap: 0.4rem;
+        min-width: 0;
 
         p {
             margin: 0;
             font-size: 0.835rem;
             color: lighten($text-muted, 15%);
             line-height: 1.6;
+            overflow-wrap: anywhere;
         }
     }
 
